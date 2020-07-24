@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+<title>Kalkulator x/z z lat/lon</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.6.2/proj4.js"></script>
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+<script>
+var epsg4326='GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4326"]]';
+var epsg3857='PROJCS["WGS 84 / Pseudo-Mercator",GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4326"]],PROJECTION["Mercator_1SP"],PARAMETER["central_meridian",0],PARAMETER["scale_factor",1],PARAMETER["false_easting",0],PARAMETER["false_northing",0],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AXIS["X",EAST],AXIS["Y",NORTH],EXTENSION["PROJ4","+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs"],AUTHORITY["EPSG","3857"]]';
+function convert() {
+	var lat=$("#lat").val()*1;
+	var lon=$("#lon").val()*1;
+	var xy=proj4(epsg4326,epsg3857,[lat, lon])
+	var xy2=proj4(epsg4326,epsg3857,[50.80114,20.62084])
+	var x=Math.round(2*(xy[0]-xy2[0]));
+	var y=Math.round(2*(xy[1]-xy2[1]));
+	alert(x+","+y)
+}
+</script>
+<style>
+#mapa {
+width: 50vw;
+height: 50vh;
+}
+</style>
+</head>
+<body>
+<h1>Konwerter lat/lon na x/z</h1>
+<div id="mapa"></div>
+Lat: <input type="number" step="0.0000000000001" id="lat"><br>
+Lon: <input type="number" step="0.0000000000001" id="lon"><br>
+<button onClick="convert();">Konwertuj</button>
+<script>
+var mymap = L.map('mapa').setView([50.80114,20.62084], 13);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+    maxZoom: 18,
+}).addTo(mymap);
+var marker=L.marker([50.80114,20.62084]).addTo(mymap);
+mymap.on("contextmenu", function (event) {
+	marker.setLatLng(event.latlng);
+	console.log(event.latlng)
+	$("#lat").val(event.latlng.lat)
+	$("#lon").val(event.latlng.lng)
+});
+</script>
+</body>
+</html>
