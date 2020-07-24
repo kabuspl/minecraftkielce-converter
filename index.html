@@ -13,7 +13,7 @@ function convert() {
 	var lat=$("#lat").val()*1;
 	var lon=$("#lon").val()*1;
 	var xy=proj4(epsg4326,epsg3857,[lat, lon])
-	var xy2=proj4(epsg4326,epsg3857,[50,8011458114591,20,6207152828574])
+	var xy2=proj4(epsg4326,epsg3857,[50.8011458114591,20.6207152828574])
 	var x=Math.floor(2*(xy2[0]-xy[0]))-280;
 	var y=Math.floor(2*(xy2[1]-xy[1]))+162;
 	$("#x").text(x);
@@ -37,12 +37,12 @@ Lon: <input type="number" step="0.0000000000001" id="lon"><br>
 <button onClick="convert();">Konwertuj</button><br>
 X: <span id="x">0</span>, Z: <span id="z">0</span>
 <script>
-var mymap = L.map('mapa').setView([50,8011458114591,20,6207152828574], 18);
+var mymap = L.map('mapa').setView([50.8011458114591,20.6207152828574], 18);
 L.tileLayer('https://4d.kielce.eu/Data/u_2019/ORTO/{z}/{x}/{y}.jpg', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
     maxZoom: 22,
 }).addTo(mymap);
-var marker=L.marker([50,8011458114591,20,6207152828574]).addTo(mymap);
+var marker=L.marker([50.8011458114591,20.6207152828574]).addTo(mymap);
 mymap.on("contextmenu", function (event) {
 	marker.setLatLng(event.latlng);
 	$("#lat").val(event.latlng.lat)
