@@ -16,8 +16,8 @@ function convert() {
 	var xy2=proj4(epsg4326,epsg3857,[50.8011439043733,20.6206941604614])
 	var x=Math.round(2*(xy[0]-xy2[0]))+164;
 	var y=Math.round(2*(xy2[1]-xy[1]))-280;
-	$("#x").text(y);
-	$("#z").text(x);
+	$("#x").text(x);
+	$("#z").text(y);
 }
 </script>
 <style>
