@@ -13,9 +13,9 @@ function convert() {
 	var lat=$("#lat").val()*1;
 	var lon=$("#lon").val()*1;
 	var xy=proj4(epsg4326,epsg3857,[lat, lon])
-	var xy2=proj4(epsg4326,epsg3857,[50.80114,20.62084])
-	var x=Math.round(2*(xy2[0]-xy[0]));
-	var y=Math.round(2*(xy[1]-xy2[1]));
+	var xy2=proj4(epsg4326,epsg3857,[50.8011439043733,20.6206941604614])
+	var x=Math.round(2*(xy[0]-xy2[0]))-164;
+	var y=Math.round(2*(xy[1]-xy2[1]))-280;
 	$("#x").text(y);
 	$("#z").text(x);
 }
@@ -27,7 +27,7 @@ height: 50vh;
 }
 </style>
 </head>
-<body>
+<body style="color: white; background: black;">
 <h1>Konwerter lat/lon na x/z</h1>
 Konwerter przetwarza pozycję geograficzną na koordynaty w grze w skali 2:1 relatywnie do punktu 0;0.<br>
 Kliknij prawym na mapie aby wybrać pozycję.<br>
@@ -37,12 +37,12 @@ Lon: <input type="number" step="0.0000000000001" id="lon"><br>
 <button onClick="convert();">Konwertuj</button><br>
 X: <span id="x">0</span>, Z: <span id="z">0</span>
 <script>
-var mymap = L.map('mapa').setView([50.80114,20.62084], 13);
+var mymap = L.map('mapa').setView([50.8011439043733,20.6206941604614], 13);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-    maxZoom: 18,
+    maxZoom: 20,
 }).addTo(mymap);
-var marker=L.marker([50.80114,20.62084]).addTo(mymap);
+var marker=L.marker([50.8011439043733,20.6206941604614]).addTo(mymap);
 mymap.on("contextmenu", function (event) {
 	marker.setLatLng(event.latlng);
 	$("#lat").val(event.latlng.lat)
