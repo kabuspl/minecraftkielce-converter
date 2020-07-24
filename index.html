@@ -15,7 +15,7 @@ function convert() {
 	var xy=proj4(epsg4326,epsg3857,[lat, lon])
 	var xy2=proj4(epsg4326,epsg3857,[50.8011439043733,20.6206941604614])
 	var x=Math.round(2*(xy2[0]-xy[0]))-280;
-	var y=Math.round(2*(xy2[1]-xy[1]))+164;
+	var y=Math.round(2*(xy2[1]-xy[1]))+165;
 	$("#x").text(x);
 	$("#z").text(y);
 }
@@ -40,7 +40,7 @@ X: <span id="x">0</span>, Z: <span id="z">0</span>
 var mymap = L.map('mapa').setView([50.8011439043733,20.6206941604614], 13);
 L.tileLayer('https://4d.kielce.eu/Data/u_2019/ORTO/{z}/{x}/{y}.jpg', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-    maxZoom: 20,
+    maxZoom: 22,
 }).addTo(mymap);
 var marker=L.marker([50.8011439043733,20.6206941604614]).addTo(mymap);
 mymap.on("contextmenu", function (event) {
