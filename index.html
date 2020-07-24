@@ -14,8 +14,8 @@ function convert() {
 	var lon=$("#lon").val()*1;
 	var xy=proj4(epsg4326,epsg3857,[lat, lon])
 	var xy2=proj4(epsg4326,epsg3857,[50.80114,20.62084])
-	var x=Math.round(2*(xy[0]-xy2[0]));
-	var y=Math.round(2*(xy[1]-xy2[1]));
+	var x=Math.round(2*(xy2[0]-xy[0]));
+	var y=Math.round(2*(xy2[1]-xy[1]));
 	$("#x").text(x);
 	$("#z").text(y);
 }
