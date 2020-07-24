@@ -35,7 +35,7 @@ Kliknij prawym na mapie aby wybrać pozycję.<br>
 Lat: <input type="number" step="0.0000000000001" id="lat"><br>
 Lon: <input type="number" step="0.0000000000001" id="lon"><br>
 <button onClick="convert();">Konwertuj</button><br>
-X: <span id="x"></span>, Z: <span id="z">
+X: <span id="x">0</span>, Z: <span id="z">0</span>
 <script>
 var mymap = L.map('mapa').setView([50.80114,20.62084], 13);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
