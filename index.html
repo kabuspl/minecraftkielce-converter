@@ -54,11 +54,18 @@ Lon: <input type="number" step="0.0000000000001" id="lon"><br>
 <button onClick="convert();">Konwertuj</button><br>
 X: <span id="x">0</span>, Z: <span id="z">0</span>
 <script>
-var mymap = L.map('mapa').setView([50.8011458114591,20.6207152828574], 18);
-L.tileLayer('https://4d.kielce.eu/Data/u_2019/ORTO/{z}/{x}/{y}.jpg', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-    maxZoom: 22,
-}).addTo(mymap);
+var ortofoto=L.tileLayer('https://4d.kielce.eu/Data/u_2019/ORTO/{z}/{x}/{y}.jpg', {attribution: '&copy; Miasto Kielce', maxZoom: 22});
+var osm=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; OpenStreetMap Contributors', maxZoom: 19});
+var mymap = L.map('mapa', {
+	center: [50.8011458114591,20.6207152828574],
+	zoom: 18,
+	layers: [ortofoto]
+});
+var baseMaps = {
+    "Ortofotomapa": ortofoto,
+    "OpenStreetMap": osm
+};
+L.control.layers(baseMaps).addTo(mymap);
 var marker=L.marker([50.8011458114591,20.6207152828574]).addTo(mymap);
 mymap.on("contextmenu", function (event) {
 	marker.setLatLng(event.latlng);
