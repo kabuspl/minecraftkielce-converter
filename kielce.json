@@ -26,7 +26,7 @@
         "wikipedia": "pl:Kielce"
       },
       "geometry": {
-        "type": "LineString",
+        "type": "Polygon",
         "coordinates": [
           [
             [
@@ -4136,7 +4136,7 @@
         ]
       },
       "geometry": {
-        "type": "LineString",
+        "type": "Polygon",
         "coordinates": [
           [
             [
@@ -8253,7 +8253,7 @@
         ]
       },
       "geometry": {
-        "type": "LineString",
+        "type": "Polygon",
         "coordinates": [
           [
             [

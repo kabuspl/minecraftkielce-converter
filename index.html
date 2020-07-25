@@ -65,7 +65,8 @@ mymap.on("contextmenu", function (event) {
 	$("#lat").val(event.latlng.lat)
 	$("#lon").val(event.latlng.lng)
 });
-L.geoJSON(getKielceBounds()).addTo(mymap)
+var bounds = L.geoJSON(getKielceBounds()).addTo(mymap);
+bounds.setStyle({fillColor:'transparent'});
 </script>
 </body>
 </html>
