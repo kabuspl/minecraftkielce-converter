@@ -26,8 +26,8 @@ function convert() {
 	var lon=$("#lon").val()*1;
 	var xy=proj4(epsg4326,epsg3857,[lat, lon])
 	var xy2=proj4(epsg4326,epsg3857,[50.8011458114591,20.6207152828574])
-	var x=Math.floor(2*(xy2[0]-xy[0]))-280;
-	var y=Math.floor(2*(xy2[1]-xy[1]))+162;
+	var x=(Math.floor(2*(xy2[0]-xy[0])*10)/10)-280;
+	var y=(Math.floor(2*(xy2[1]-xy[1])*10)/10)+162;
 	$("#x").text(x);
 	$("#z").text(y);
 }
