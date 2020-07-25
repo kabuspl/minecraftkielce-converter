@@ -4136,7 +4136,7 @@
         ]
       },
       "geometry": {
-        "type": "Polygon",
+        "type": "LineString",
         "coordinates": [
           [
             [
