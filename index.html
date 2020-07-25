@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
 <title>Kalkulator x/z z lat/lon</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -9,6 +10,17 @@
 <script>
 var epsg4326='GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4326"]]';
 var epsg3857='PROJCS["WGS 84 / Pseudo-Mercator",GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4326"]],PROJECTION["Mercator_1SP"],PARAMETER["central_meridian",0],PARAMETER["scale_factor",1],PARAMETER["false_easting",0],PARAMETER["false_northing",0],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AXIS["X",EAST],AXIS["Y",NORTH],EXTENSION["PROJ4","+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs"],AUTHORITY["EPSG","3857"]]';
+function getKielceBounds() {
+	var bounds;
+	$.ajax({
+		url: 'kielce.json',
+		success: function(result) {
+			bounds=result;
+		},
+		async: false
+	});
+	return bounds;
+}
 function convert() {
 	var lat=$("#lat").val()*1;
 	var lon=$("#lon").val()*1;
@@ -22,7 +34,7 @@ function convert() {
 </script>
 <style>
 #mapa {
-width: 50vw;
+width: 100%;
 height: 50vh;
 }
 body {
@@ -35,7 +47,7 @@ font-family: 'Segoe UI', sans-serif;
 <body>
 <h1>Konwerter lat/lon na x/z</h1>
 Konwerter przetwarza pozycję geograficzną na koordynaty w grze w skali 2:1 relatywnie do punktu 0;0.<br>
-Kliknij prawym na mapie aby wybrać pozycję.<br><br>
+Kliknij prawym na mapie aby wybrać pozycję (na telefonie przytrzymaj).<br><br>
 <div id="mapa"></div>
 Lat: <input type="number" step="0.0000000000001" id="lat"><br>
 Lon: <input type="number" step="0.0000000000001" id="lon"><br>
@@ -53,6 +65,7 @@ mymap.on("contextmenu", function (event) {
 	$("#lat").val(event.latlng.lat)
 	$("#lon").val(event.latlng.lng)
 });
+L.geoJSON(getKielceBounds()).addTo(mymap)
 </script>
 </body>
 </html>
