@@ -42,8 +42,8 @@ function convert() {
 	//var z=2*(xy2[1]-xy[1]);
 	//$("#x").text(z+"("+(x-oldx)+")");
 	//$("#z").text(x+"("+(z-oldz)+")");
-	$("#z").text(xy[0]+"("+(xy[0]-oldx)+")");
-	$("#x").text(xy[1]+"("+(xy[1]-oldz)+")");
+	$("#z").text(Math.round(xy[0]*10)/10);
+	$("#x").text(Math.round(xy[1]*10)/10);
 	oldx=xy[0];
 	oldz=xy[1];
 }
