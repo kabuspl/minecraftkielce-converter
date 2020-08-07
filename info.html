@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+		integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+		crossorigin="" />
+	<link rel="stylesheet" href="style.css">
+	<title>Informacje</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.6.2/proj4.js"></script>
+	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+		integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+		crossorigin=""></script>
+	<style>
+		body {
+			color: white;
+			background: black;
+			font-family: 'Segoe UI', sans-serif;
+		}
+	</style>
+</head>
+
+<body>
+	<header class="header">
+		<h1 class="title">MinecraftKielce</h1>
+		<h2 class="subtitle">Informacje dla budowniczych</h2><sup>redesign alpha</sup>
+		<nav class="navbar">
+			<ul>
+				<li><a href="index.html">Konwerter</a></li>
+				<li><a href="info.html">Informacje</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main class="main">
+		<article>
+			<h2 class="subtitle">Z jakich bloków co budować</h2>
+			<table rules="all" border="1">
+				<tr>
+					<td>Obiekt</td>
+					<td>Blok</td>
+				</tr>
+				<tr>
+					<td>Chodnik z kostki brukowej</td>
+					<td>Cobblestone</td>
+				</tr>
+				<tr>
+					<td>Chodnik z płyt betonowych</td>
+					<td>Gładki kamień</td>
+				</tr>
+				<tr>
+					<td>Chodniki asfaltowe / asfaltowe drogi rowerowe</td>
+					<td>Szary cement</td>
+				</tr>
+				<tr>
+					<td>Drogi dla rowerów / chodniki z czerwonej kostki brukowej</td>
+					<td>Czerwone cegły</td>
+				</tr>
+				<tr>
+					<td>Drogi asfaltowe</td>
+					<td>Szary beton</td>
+				</tr>
+				<tr>
+					<td>Drogi żwirowe</td>
+					<td>Żwir</td>
+				</tr>
+				<tr>
+					<td>Drogi betonowe / z prefabrykatów betonowych</td>
+					<td>Kamień</td>
+				</tr>
+				<tr>
+					<td>Pasy na drogach / przejścia dla pieszych itp.</td>
+					<td>Biały beton</td>
+				</tr>
+				<tr>
+					<td>Płyty kamienne (takie jak na Sienkiewicza)</td>
+					<td>Granit / Dioryt / Andezyt (nie polerowane)</td>
+				</tr>
+			</table>
+		</article><br>
+		<article>
+			<h2 class="subtitle">Jak robić lasy?</h2>
+			Wpisz "//sel poly", lewym przyciskiem zaznacz pierwszy punkt na poziomie podłogi; kolejne punkty dodawaj
+			prawym przyciskiem. Następnie po zaznaczeniu całego obszaru wpisz w zależności od rodzaju drzew rosnących w
+			danym miejscu "//forest largeoak 6", "//forest bigoak 6", "//forest tallbirch 6", "//forest tallspruce 6"
+			lub "//forest bigspruce 6". Liczbę "6" można zmieniać w zależności od gęstości lasu. Po skończeniu tworzenia
+			lasu do normalnego trybu zaznaczania powraca się komendą "//sel cuboid".
+		</article><br>
+		<article>
+			<h2 class="subtitle">Jak budować pasy na drogach?</h2>
+			Skorzystaj z konwertera aby uzyskać koordynaty, teleportuj się na nie, zaznacz lewym przyciskiem punkt,
+			teleportuj się do następnego punktu, zaznacz prawym przyciskiem drugi punkt, wpisz "//line [materiał]".
+		</article><br>
+		<article>
+			<h2 class="subtitle">Jak "wylewać" asfalt na drogach?</h2>
+			Wpisz "//sel poly", dodaj pierwszy punkt na podstawie konwertera lewym przyciskiem, teleportuj się w kolejne
+			miejsce z konwertera i dodaj punkt prawym przyciskiem. Tą czynność (tp i klikanie prawym) powtarzaj aż do
+			"otoczenia" całego żądanego obszaru punktami. Gdy będzie to gotowe wpisz "//replace grasss_block
+			[materiał]". Aby powrócić do normalnego trybu zaznaczania wpisz "//sel cuboid".
+		</article><br>
+	</main>
+	<footer>
+		&copy; Kabus 2020.<br>
+		Program udostępniony na licencji <a href="javascript:showmit();">MIT</a><br>
+		<div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a
+				href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+	</footer>
+</body>
+
+</html>
