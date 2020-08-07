@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Montserrat:wght@400;800&display=swap');
+
+/*
+HEADER
+*/
+
+.header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    margin: 0;
+}
+
+.subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    margin: 0;
+}
+
+/*
+MAIN
+*/
+.infobox {
+    padding: 0;
+    margin: 8px;
+    background: rgba(255,255,255,0.2);
+    border-style: solid;
+    border-width: 0 0 0 8px;
+    border-color: rgb(255, 153, 0);
+    border-radius: 8px;
+}
+.infobox .infotext {
+    font-family: 'Cutive Mono', 'Courier New', monospace;
+    font-size: 18px;
+    padding: 8px;
+    display: inline-block;
+    margin: 0;
+}
+button {
+    border-radius: 10px;
+    height: 36px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(255, 153, 0);
+    background: transparent;
+    color: #fff;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    margin-left: 8px;
+    transition: all .15s ease-in-out;
+    text-align: center;
+    outline: none;
+    padding: 0 6px 0 6px;
+}
+button:hover {
+    box-shadow: 0 0px 5px 4px rgba(255, 153, 0, .5);
+}
+button:active {
+    border-color: #fff !important;
+    box-shadow: 0 0px 5px 4px rgba(255, 255, 255, .5);
+    text-decoration: none;
+}
+.lbl {
+    position: relative;
+    display: block;
+    height: 15px;
+    width: 35px;
+    background: #bdbdbd;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    top: 2px;
+  }
+  
+  .lbl:after {
+    position: absolute;
+    left: -1px;
+    top: -2px;
+    display: block;
+    width: 19px;
+    height: 19px;
+    border-radius: 100px;
+    background: #fff;
+    box-shadow: 0px 3px 3px rgba(0,0,0,0.05);
+    content: '';
+    transition: box-shadow .15s ease-in-out,  left .3s ease-in-out;
+  }
+  
+  .cbx:checked ~ .lbl:active:after {
+       box-shadow: 0 0 0 15px rgba(255, 153, 0,.5);;
+    }
+    .cbx:not(:checked) ~ .lbl:active:after {
+        box-shadow: 0 0 0 15px rgba(255, 255, 255,.5);;
+     }
+  
+  .cbx:checked ~ label { background: rgb(255, 203, 124); }
+  
+  .cbx:checked ~ label:after {
+    left: 16px;
+    background: rgb(255, 153, 0);
+  }
+  
+  .cbx:disabled ~ label {
+    background: #d5d5d5;
+    pointer-events: none;
+  }
+  
+  .cbx:disabled ~ label:after { background: #bcbdbc; }
+  
+  .hidden { display: none; }
+  .toggle {
+      float: right;
+      font-size: 15px;
+      padding: 8px;
+  }
+  .inlinediv {
+      display: inline-block;
+  }
+  .label {
+      padding: 8px;
+      display:inline-block;
+  }
