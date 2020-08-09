@@ -49,9 +49,9 @@
 			//var xy=proj4(epsg4326,epsg3857,[lat, lon])
 			//var xy2=proj4(epsg4326,epsg3857,[50.8011458114591,20.6207152828574])
 			var xy = latm(lat, lon);
-			xy[1] = xy[1] / 1.6;
-			xy[0] = xy[0] * 2;
-			xy[1] = -1 * xy[1] * 2;
+			xy[1] = xy[1] / 1.6; //x
+			xy[0] = xy[0] * 2; //z
+			xy[1] = -1 * xy[1] * 2; //x
 			//var xy2=latm(50.8011458114591,20.6207152828574);
 			//var x=2*(xy2[0]-xy[0]);
 			//var z=2*(xy2[1]-xy[1]);
@@ -152,6 +152,11 @@
 		</nav>
 	</header>
 	<main class="main">
+		<div class="infobox">
+			<div class="infotext">
+				UWAGA! Funkcja odwrotnej konwersji nie zostanie dodana. Jest to niemożliwe do obliczenia ze wzgędu na zaokrąglenia.
+			</div>
+		</div>
 		<div class="settings">
 			<h2 class="subtitle">Ustawienia</h2>
 			<input type="checkbox" id="line" class="cbx hidden"><label for="line" class="lbl"></label> Generowanie listy
