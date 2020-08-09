@@ -176,8 +176,8 @@
 		</div>
 		<div class="infobox">
 			<div class="infotext">
-				<span id="showstyle1">/tp @s </span><span id="x">0</span><span id="showstyle2"> 35 </span><span
-					id="z">0</span>
+				<span id="showstyle1">/tp @s </span><span id="x">1506.7</span><span id="showstyle2"> 35 </span><span
+					id="z">-15688.2</span>
 			</div>
 			<div class="toggle switch">
 				Komenda/koordynaty
@@ -204,7 +204,7 @@
 			maxZoom: 19
 		});
 		var mymap = L.map('mapa', {
-			center: [50.8011458114591, 20.6207152828574],
+			center: [50.87161, 20.63157],
 			zoom: 18,
 			layers: [ortofoto]
 		});
@@ -213,7 +213,12 @@
 			"OpenStreetMap": osm
 		};
 		L.control.layers(baseMaps).addTo(mymap);
-		var marker = L.marker([50.8011458114591, 20.6207152828574]).addTo(mymap);
+		var marker = L.marker([50.87161, 20.63157], {
+			draggable: true
+		}).addTo(mymap);
+		marker.on("drag", function (e) {
+			refreshLine();
+		})
 		var markers = [];
 		var markerpos = [];
 		markers[0] = marker;
@@ -224,19 +229,25 @@
 		markerpos[0] = [50.8011458114591 - marker.getLatLng().lat, 20.6207152828574 - marker.getLatLng().lng];
 		mymap.on("contextmenu", function (event) {
 			if ($("#line").prop('checked')) {
-				markers[markers.length] = L.marker(event.latlng).addTo(mymap);
+				markers[markers.length] = L.marker(event.latlng, {
+					draggable: true
+				}).addTo(mymap);
 				markers[markers.length - 1].bindPopup("<a href='javascript:removeMarker(" + (markers.length - 1) +
 					");'>Usuń</a>")
 				line.addLatLng(event.latlng);
 				markerpos[markers.length - 1] = [50.8011458114591 - event.latlng.lat, 20.6207152828574 - event.latlng
 					.lng
 				];
+				markers[markers.length - 1].on("drag", function (e) {
+					refreshLine();
+				})
 			} else {
 				marker.setLatLng(event.latlng);
 				markers[0] = marker;
 				$("#lat").val(50.8011458114591 - event.latlng.lat);
 				$("#lon").val(20.6207152828574 - event.latlng.lng);
 				markerpos[0] = [50.8011458114591 - event.latlng.lat, 20.6207152828574 - event.latlng.lng];
+				refreshLine();
 			}
 		});
 		var bounds = L.geoJSON(getKielceBounds()).addTo(mymap);
