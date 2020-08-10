@@ -115,7 +115,7 @@
 				if (markers[i] != null) {
 					var latlon = markers[i].getLatLng();
 					var lat = 50.8011458114591 - latlon.lat;
-					var lon = 20.6207152828574 - latlon.lon;
+					var lon = 20.6207152828574 - latlon.lng;
 					var xy = latm(lat, lon);
 					xy[1] = xy[1] / 1.6;
 					xy[0] = xy[0] * 2;
