@@ -44,8 +44,8 @@
 				generateLineTp();
 				return;
 			}
-			var lat = ($("#lat").val() * 1);
-			var lon = ($("#lon").val() * 1);
+			var lat = 50.8011458114591 - marker.getLatLng().lat;
+			var lon = 20.6207152828574 - marker.getLatLng().lng;
 			//var xy=proj4(epsg4326,epsg3857,[lat, lon])
 			//var xy2=proj4(epsg4326,epsg3857,[50.8011458114591,20.6207152828574])
 			var xy = latm(lat, lon);
@@ -103,6 +103,7 @@
 		function removeMarker(m) {
 			mymap.removeLayer(markers[m]);
 			markers[m] = null;
+			markerpos[m]=null;
 			refreshLine();
 		}
 
@@ -112,9 +113,9 @@
 			out.html("");
 			for (var i = 0; i < markers.length; i++) {
 				if (markers[i] != null) {
-					var latlon = markerpos[i];
-					var lat = latlon[0];
-					var lon = latlon[1];
+					var latlon = markers[i].getLatLng();
+					var lat = 50.8011458114591 - latlon.lat;
+					var lon = 20.6207152828574 - latlon.lon;
 					var xy = latm(lat, lon);
 					xy[1] = xy[1] / 1.6;
 					xy[0] = xy[0] * 2;
@@ -223,7 +224,7 @@
 		}).addTo(mymap);
 		marker.on("drag", function (e) {
 			refreshLine();
-			markerpos[0]=[50.8011458114591 - e.target.getLatLng().lat, 20.6207152828574 - e.target.getLatLng().lng];
+			markerpos[0]=[50.8011458114591 - marker.getLatLng().lat, 20.6207152828574 - e.target.getLatLng().lng];
 		})
 		var markers = [];
 		var markerpos = [];
@@ -246,7 +247,7 @@
 				];
 				markers[markers.length - 1].on("drag", function (e) {
 					refreshLine();
-					markerpos[markers.length-1]=[50.8011458114591 - e.target.getLatLng().lat, 20.6207152828574 - e.target.getLatLng().lng];
+					markerpos[markers.length-1]=[50.8011458114591 - markers[markers.length - 1].getLatLng().lat, 20.6207152828574 - markers[markers.length - 1].getLatLng().lng];
 				})
 			} else {
 				marker.setLatLng(event.latlng);
