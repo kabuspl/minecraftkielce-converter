@@ -100,6 +100,20 @@
 			}
 		}
 
+		function resetpoints() {
+			mymap.removeLayer(line);
+			line = L.polyline([], {
+				color: 'red'
+			}).addTo(mymap);
+			line.addLatLng(marker.getLatLng());
+			for (var i = 1; i < markers.length; i++) {
+				if (markers[i] != null) {
+					mymap.removeLayer(markers[i]);
+					markers[i]=null;
+				}
+			}
+		}
+
 		function removeMarker(m) {
 			mymap.removeLayer(markers[m]);
 			markers[m] = null;
@@ -174,7 +188,7 @@
 		</div>
 		<input type="hidden" id="lat">
 		<input type="hidden" id="lon">
-		<button onClick="convert();">Konwertuj</button><br>
+		<button onClick="convert();">Konwertuj</button> <button onClick="resetpoints();">Resetuj punkty</button><br>
 		<div class="infobox hidden">
 			<div class="infotext" id="wynik">
 
