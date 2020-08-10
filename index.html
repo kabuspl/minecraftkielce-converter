@@ -223,6 +223,7 @@
 		}).addTo(mymap);
 		marker.on("drag", function (e) {
 			refreshLine();
+			markerpos[0]=[50.8011458114591 - e.target.getLatLng().lat, 20.6207152828574 - e.target.getLatLng().lng];
 		})
 		var markers = [];
 		var markerpos = [];
@@ -245,6 +246,7 @@
 				];
 				markers[markers.length - 1].on("drag", function (e) {
 					refreshLine();
+					markerpos[markers.length-1]=[50.8011458114591 - e.target.getLatLng().lat, 20.6207152828574 - e.target.getLatLng().lng];
 				})
 			} else {
 				marker.setLatLng(event.latlng);
